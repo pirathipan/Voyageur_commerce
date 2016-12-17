@@ -28,7 +28,14 @@ public class Main {
 
 		System.out.println(villeliste);
 
-
+		for(int i = 0; i < 10; i++){
+			int solutions1 = solutionsList.size();
+			int solutions2  = solutionsList.size() / 2;
+			for(Solution solution : solutionsList){
+				solution.setScore(getScore(solution.getVilles()));
+			}
+		}
+		System.out.println(Solution);
 	}
 
 	private static List<Ville> populate(List<Ville> Villes) throws FileNotFoundException{
@@ -46,5 +53,16 @@ public class Main {
 		return (List<Ville>) gson.fromJson(reader, new TypeToken<List<Ville>>(){}.getType());
 
 	}
-	
+
+	Private static List<Solution> generateSolution(List<ville> Villes, int nb) throws FileNotFoundException{
+		List<Solution> solutionsList = new ArrayList<Solution>();
+		List<Ville> villeSolution = new ArrayList<Ville>(Villes);
+		for(int i = 0; i < nb; i++){
+			List<Ville> population = populate(villeSolution);
+			Solution solution = new Solution(population, null);
+			solutionsList.add(solution);
+		}
+		return solutionsList;
+	}
+
 }
